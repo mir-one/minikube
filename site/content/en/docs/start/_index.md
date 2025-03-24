@@ -171,7 +171,7 @@ Click on the buttons that describe your target platform. For other architectures
 
 {{% quiz_instruction id="/Linux/x86-64/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
 ```
 {{% /quiz_instruction %}}
@@ -216,7 +216,7 @@ curl -L $u > minikube-beta.x86_64.rpm && sudo rpm -Uvh minikube-beta.x86_64.rpm
 
 {{% quiz_instruction id="/Linux/ARM64/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm64
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-arm64
 sudo install minikube-linux-arm64 /usr/local/bin/minikube && rm minikube-linux-arm64
 ```
 {{% /quiz_instruction %}}
@@ -261,7 +261,7 @@ curl -L $u > minikube-beta.aarch64.rpm && sudo rpm -Uvh minikube-beta.aarch64.rp
 
 {{% quiz_instruction id="/Linux/ppc64/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-ppc64le
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-ppc64le
 sudo install minikube-linux-ppc64le /usr/local/bin/minikube && rm minikube-linux-ppc64le
 ```
 {{% /quiz_instruction %}}
@@ -306,7 +306,7 @@ curl -L $u > minikube-beta.ppc64el.rpm && sudo rpm -Uvh minikube-beta.ppc64el.rp
 
 {{% quiz_instruction id="/Linux/S390x/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-s390x
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-s390x
 sudo install minikube-linux-s390x /usr/local/bin/minikube && rm minikube-linux-s390x
 ```
 {{% /quiz_instruction %}}
@@ -351,7 +351,7 @@ curl -L $u > minikube-beta.s390x.rpm && sudo rpm -Uvh minikube-beta.s390x.rpm
 
 {{% quiz_instruction id="/Linux/ARMv7/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-arm
 sudo install minikube-linux-arm /usr/local/bin/minikube && rm minikube-linux-arm
 ```
 {{% /quiz_instruction %}}
@@ -411,7 +411,7 @@ brew link minikube
 
 {{% quiz_instruction id="/macOS/x86-64/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-darwin-amd64
 sudo install minikube-darwin-amd64 /usr/local/bin/minikube
 ```
 {{% /quiz_instruction %}}
@@ -426,7 +426,7 @@ sudo install minikube-darwin-amd64 /usr/local/bin/minikube
 
 {{% quiz_instruction id="/macOS/ARM64/Stable/Binary download" %}}
 ```shell
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-arm64
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-darwin-arm64
 sudo install minikube-darwin-arm64 /usr/local/bin/minikube
 ```
 {{% /quiz_instruction %}}

@@ -21,6 +21,7 @@ import (
 	"os/exec"
 	"regexp"
 	"runtime"
+	"slices"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -45,6 +46,14 @@ func IsBootpdBlocked(cc config.ClusterConfig) bool {
 	if regexp.MustCompile(`Firewall is disabled`).Match(out) {
 		return false
 	}
+	out, err = exec.Command("/usr/libexec/ApplicationFirewall/socketfilterfw", "--getallowsigned").Output()
+	if err != nil {
+		// macOS < 15 or other issue: need to use --list.
+		klog.Warningf("failed to list firewall allowedsinged option: %v", err)
+		// macOS >= 15: bootpd may be allowed as builtin software
+	} else if regexp.MustCompile(`Automatically allow built-in signed software ENABLED`).Match(out) {
+		return false
+	}
 	out, err = exec.Command("/usr/libexec/ApplicationFirewall/socketfilterfw", "--listapps").Output()
 	if err != nil {
 		klog.Warningf("failed to list firewall apps: %v", err)
@@ -65,7 +74,7 @@ func UnblockBootpd() error {
 		cmdString.WriteString(fmt.Sprintf("    $ %s \n", strings.Join(c.Args, " ")))
 	}
 
-	out.Styled(style.Permissions, "Your firewall is blocking bootpd which is required for socket_vmnet. The following commands will be executed to unblock bootpd:\n\n{{.commands}}\n", out.V{"commands": cmdString.String()})
+	out.Styled(style.Permissions, "Your firewall is blocking bootpd which is required for this configuration. The following commands will be executed to unblock bootpd:\n\n{{.commands}}\n", out.V{"commands": cmdString.String()})
 
 	for _, c := range cmds {
 		testArgs := append([]string{"-n"}, c.Args[1:]...)
@@ -75,6 +84,7 @@ func UnblockBootpd() error {
 			klog.Infof("%v may require a password: %v", c.Args, err)
 			if !viper.GetBool("interactive") {
 				klog.Warningf("%s requires a password, and --interactive=false", c.Args)
+				c.Args = slices.Insert(c.Args, 1, "-n")
 			}
 		}
 		klog.Infof("running: %s", c.Args)

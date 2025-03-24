@@ -75,7 +75,7 @@ type Docker struct {
 	Init              sysinit.Manager
 	UseCRI            bool
 	CRIService        string
-	GPUs              bool
+	GPUs              string
 }
 
 // Name is a human readable name for Docker
@@ -524,14 +524,14 @@ func (r *Docker) UnpauseContainers(ids []string) error {
 }
 
 // ContainerLogCmd returns the command to retrieve the log for a container based on ID
-func (r *Docker) ContainerLogCmd(id string, len int, follow bool) string {
+func (r *Docker) ContainerLogCmd(id string, length int, follow bool) string {
 	if r.UseCRI {
-		return criContainerLogCmd(r.Runner, id, len, follow)
+		return criContainerLogCmd(r.Runner, id, length, follow)
 	}
 	var cmd strings.Builder
 	cmd.WriteString("docker logs ")
-	if len > 0 {
-		cmd.WriteString(fmt.Sprintf("--tail %d ", len))
+	if length > 0 {
+		cmd.WriteString(fmt.Sprintf("--tail %d ", length))
 	}
 	if follow {
 		cmd.WriteString("--follow ")
@@ -542,8 +542,8 @@ func (r *Docker) ContainerLogCmd(id string, len int, follow bool) string {
 }
 
 // SystemLogCmd returns the command to retrieve system logs
-func (r *Docker) SystemLogCmd(len int) string {
-	return fmt.Sprintf("sudo journalctl -u docker -u cri-docker -n %d", len)
+func (r *Docker) SystemLogCmd(length int) string {
+	return fmt.Sprintf("sudo journalctl -u docker -u cri-docker -n %d", length)
 }
 
 type dockerDaemonConfig struct {
@@ -580,13 +580,17 @@ func (r *Docker) configureDocker(driver string) error {
 		},
 		StorageDriver: "overlay2",
 	}
-	if r.GPUs {
+
+	if r.GPUs == "all" || r.GPUs == "nvidia" {
 		assets.Addons["nvidia-device-plugin"].EnableByDefault()
 		daemonConfig.DefaultRuntime = "nvidia"
 		runtimes := &dockerDaemonRuntimes{}
 		runtimes.Nvidia.Path = "/usr/bin/nvidia-container-runtime"
 		daemonConfig.Runtimes = runtimes
+	} else if r.GPUs == "amd" {
+		assets.Addons["amd-gpu-device-plugin"].EnableByDefault()
 	}
+
 	daemonConfigBytes, err := json.Marshal(daemonConfig)
 	if err != nil {
 		return err
@@ -700,7 +704,7 @@ func AddDockerIO(name string) string {
 	return addRegistryPreix(name, "docker.io")
 }
 func addRegistryPreix(name string, prefix string) string {
-	// we seperate the image name following this logic
+	// we separate the image name following this logic
 	// https://pkg.go.dev/github.com/distribution/reference#ParseNormalizedNamed
 	var reg, usr, img string
 	p := strings.SplitN(name, "/", 2)

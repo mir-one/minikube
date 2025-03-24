@@ -119,6 +119,17 @@ func StartArgs() []string {
 	return strings.Split(*startArgs, " ")
 }
 
+type ContextKey string
+
+func StartArgsWithContext(ctx context.Context) []string {
+	res := strings.Split(*startArgs, " ")
+	value := ctx.Value(ContextKey("k8sVersion"))
+	if value != nil && value != "" {
+		res = append(res, fmt.Sprintf("--kubernetes-version=%s", value))
+	}
+	return res
+}
+
 // Target returns where the minikube binary can be found
 func Target() string {
 	return *binaryPath
@@ -149,7 +160,7 @@ func PodmanDriver() bool {
 	return strings.Contains(*startArgs, "--driver=podman") || strings.Contains(*startArgs, "--vm-driver=podman")
 }
 
-// Rootless returns whether or not this test is using the rootless KIC driver
+// RootlessDriver returns whether or not this test is using the rootless KIC driver
 func RootlessDriver() bool {
 	return strings.Contains(*startArgs, "--rootless")
 }
@@ -178,6 +189,11 @@ func ContainerRuntime() string {
 // arm64Platform returns true if running on arm64/* platform
 func arm64Platform() bool {
 	return runtime.GOARCH == "arm64"
+}
+
+// amd64Platform returns true if running on amd64/* platform
+func amd64Platform() bool {
+	return runtime.GOARCH == "amd64"
 }
 
 // NeedsPortForward returns access to endpoints with this driver needs port forwarding

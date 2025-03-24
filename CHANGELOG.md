@@ -1,5 +1,242 @@
 # Release Notes
 
+# Release Notes
+
+## Version 1.35.0 - 2025-01-15
+
+Features:
+* Add support for AMD GPUs via --gpus=amd [#19749](https://github.com/kubernetes/minikube/pull/19749)
+* Use Github Assets as New fail over for kic base image  [#19464](https://github.com/kubernetes/minikube/pull/19464)
+* Support latest Kubernetes v1.32.0 [#20091](https://github.com/kubernetes/minikube/pull/20091)
+* Adds support for kubeadm.k8s.io/v1beta4 (available since k8s v1.31) [#19790](https://github.com/kubernetes/minikube/pull/19790)
+
+Improvements:
+* Merge nvidia-gpu-device-plugin and nvidia-device-plugin. [#19545](https://github.com/kubernetes/minikube/pull/19545)
+* kicbase: Update nvidia packages [#19738](https://github.com/kubernetes/minikube/pull/19738)
+* cilium: remove appArmorProfile for k8s<v1.30.0 [#19888](https://github.com/kubernetes/minikube/pull/19888)
+* auto-pause: restart service after configuration [#19900](https://github.com/kubernetes/minikube/pull/19900)
+* Revert "Change MINIKUBE_HOME logic" [#20045](https://github.com/kubernetes/minikube/pull/20045)
+* don't pollute minikube profile list with errors if exitcode is absent [#19728](https://github.com/kubernetes/minikube/pull/19728)
+* unified minikube cluster status query [#18998](https://github.com/kubernetes/minikube/pull/18998)
+* Vfkit driver: fix TestMachineType failing on macOS [#19726](https://github.com/kubernetes/minikube/pull/19726)
+* No more arch restriction on nerdctld [#19730](https://github.com/kubernetes/minikube/pull/19730)
+* More robust MAC address matching [#19750](https://github.com/kubernetes/minikube/pull/19750)
+* Add instructions to resolve docker context error [#19197](https://github.com/kubernetes/minikube/pull/19197)
+
+Bug fixes:
+* fix --wait's failure to work on coredns pods [#19748](https://github.com/kubernetes/minikube/pull/19748)
+* Fix panic when no services in namespace with --all specified [#19957](https://github.com/kubernetes/minikube/pull/19957)
+* fix timeout when stopping KVM machine with CRI-O container runtime [#19758](https://github.com/kubernetes/minikube/pull/19758)
+* Fix long lines in lastStart.txt not outputting in log outputs [#19740](https://github.com/kubernetes/minikube/pull/19740)
+* Fix wrongly detecting kicbase arch as incorrect [#19664](https://github.com/kubernetes/minikube/pull/19664)
+
+Breaking Changes:
+* remove arm64 kvm [#19985](https://github.com/kubernetes/minikube/pull/19985) [#20062](https://github.com/kubernetes/minikube/pull/20062)
+* remove helm-tiller addon [#19636](https://github.com/kubernetes/minikube/pull/19636)
+
+
+Languages:
+* Add more Chinese translations [#19490](https://github.com/kubernetes/minikube/pull/19490) [#19508](https://github.com/kubernetes/minikube/pull/19508)  [#19718](https://github.com/kubernetes/minikube/pull/19718) [#19962](https://github.com/kubernetes/minikube/pull/19962) [#19772](https://github.com/kubernetes/minikube/pull/19772)
+* Improve french translation [#19654](https://github.com/kubernetes/minikube/pull/19654) [#19978](https://github.com/kubernetes/minikube/pull/19978)
+
+
+Version Updates:
+* CNI: Update flannel from v0.25.6 to v0.26.2 [#19761](https://github.com/kubernetes/minikube/pull/19761) [#20107](https://github.com/kubernetes/minikube/pull/20107)
+* CNI: Update cilium from v1.16.1 to v1.16.5  [#19734](https://github.com/kubernetes/minikube/pull/19734) [#20148](https://github.com/kubernetes/minikube/pull/20148) [#19823](https://github.com/kubernetes/minikube/pull/19823)
+* CNI: Update calico to v3.29.1 [#19884](https://github.com/kubernetes/minikube/pull/19884) [#20052](https://github.com/kubernetes/minikube/pull/20052) [#19667](https://github.com/kubernetes/minikube/pull/19667)
+* CNI: Update kindnetd to v20241023-a345ebe4 [#19865](https://github.com/kubernetes/minikube/pull/19865) [#19780](https://github.com/kubernetes/minikube/pull/19780) [#20051](https://github.com/kubernetes/minikube/pull/20051)
+* Update golang to 1.23.3 [#20065](https://github.com/kubernetes/minikube/pull/20065) [#19868](https://github.com/kubernetes/minikube/pull/19868) [#19756](https://github.com/kubernetes/minikube/pull/19756)
+* Addon istio-provisioner: Update istio/operator image from 1.23.0 to 1.23.3 [#19678](https://github.com/kubernetes/minikube/pull/19678) [#19629](https://github.com/kubernetes/minikube/pull/19629) [#19876](https://github.com/kubernetes/minikube/pull/19876)
+* Addon cloud-spanner: Update cloud-spanner-emulator/emulator image from 1.5.23 to 1.5.24 [#19679](https://github.com/kubernetes/minikube/pull/19679)
+* Addon gcp-auth: Update k8s-minikube/gcp-auth-webhook image from v0.1.2 to v0.1.3 [#19787](https://github.com/kubernetes/minikube/pull/19787)
+* Addon ingress: Update ingress-nginx/controller image from v1.11.2 to v1.12.0-beta.0 [#19781](https://github.com/kubernetes/minikube/pull/19781) [#19824](https://github.com/kubernetes/minikube/pull/19824)
+* Addon registry: Update kube-registry-proxy image from 0.0.7 to 0.0.8 [#19782](https://github.com/kubernetes/minikube/pull/19782)
+* addon gvisor: Update gvisor-addon image from v0.0.1 to v0.0.2 [#19776](https://github.com/kubernetes/minikube/pull/19776)
+* Addon inspektor-gadget: Update inspektor-gadget image from v0.33.0 to v0.36.0 [#20205](https://github.com/kubernetes/minikube/pull/20205) [#20033](https://github.com/kubernetes/minikube/pull/20033)
+* Addon registry: Update registry image from 2.8.3 to 2.8.3 [#20035](https://github.com/kubernetes/minikube/pull/20035)
+* Addon kubevirt: Update bitnami/kubectl image from 1.31.1 to 1.31.3 [#19763](https://github.com/kubernetes/minikube/pull/19763) [#20028](https://github.com/kubernetes/minikube/pull/20028) [#20068](https://github.com/kubernetes/minikube/pull/20068) [#19937](https://github.com/kubernetes/minikube/pull/19937) [#19690](https://github.com/kubernetes/minikube/pull/19690) [#19875](https://github.com/kubernetes/minikube/pull/19875) [#19652](https://github.com/kubernetes/minikube/pull/19652)
+* Addon headlamp: Update headlamp-k8s/headlamp image from v0.25.0 to v0.25.1 [#19570](https://github.com/kubernetes/minikube/pull/19570)
+* Addon kong: Update kong image from 3.7.1 to 3.8.0 [#19651](https://github.com/kubernetes/minikube/pull/19651)
+* Addon kong: Update kong/kubernetes-ingress-controller image from 2.12.0 to 3.3.1 [#18424](https://github.com/kubernetes/minikube/pull/18424)
+* Addon Volcano: Update volcano images from v1.9.0 to v1.10.0 [#19700](https://github.com/kubernetes/minikube/pull/19700)
+* Addon kong: Update kong image from 3.8.0 to 3.8.0 [#19689](https://github.com/kubernetes/minikube/pull/19689)
+* Addon inspektor-gadget: Update inspektor-gadget image from v0.32.0 to v0.33.0 [#19764](https://github.com/kubernetes/minikube/pull/19764)
+* Addons registry: Update kube-registry-proxy from 0.0.6 to 0.0.7 [#19711](https://github.com/kubernetes/minikube/pull/19711)
+* Kicbase: Bump ubuntu:jammy from 20240808 to 20240911.1 [#19662](https://github.com/kubernetes/minikube/pull/19662)
+* Kicbase/ISO: Update nerdctl from 1.7.6 to 1.7.7 [#19649](https://github.com/kubernetes/minikube/pull/19649)
+* Kicbase/ISO: Update cni-plugins from v1.6.1 to v1.6.2 [#20236](https://github.com/kubernetes/minikube/pull/20236)
+* Kicbase/ISO: Update buildkit from v0.16.0 to v0.18.1 [#20089](https://github.com/kubernetes/minikube/pull/20089)
+* Kicbase/ISO: Update crun from 1.16.1 to 1.18.2 [#19640](https://github.com/kubernetes/minikube/pull/19640) [#19883](https://github.com/kubernetes/minikube/pull/19883) [#20083](https://github.com/kubernetes/minikube/pull/20083) [#19917](https://github.com/kubernetes/minikube/pull/19917)
+* Kicbase/ISO: Update dependency versions [#20090](https://github.com/kubernetes/minikube/pull/20090)
+* Kicbase/ISO: Update runc from v1.1.13 to v1.1.15 [#19598](https://github.com/kubernetes/minikube/pull/19598) [#19774](https://github.com/kubernetes/minikube/pull/19774)
+* Kicbase/ISO: Update buildkit from v0.15.2 to v0.16.0 [#19644](https://github.com/kubernetes/minikube/pull/19644)
+* Kicbase/ISO: Update containerd from v1.7.21 to v1.7.22 [#19643](https://github.com/kubernetes/minikube/pull/19643)
+* Kicbase/ISO: Update docker from 27.2.0 to 27.3.1 [#19616](https://github.com/kubernetes/minikube/pull/19616) [#19672](https://github.com/kubernetes/minikube/pull/19672) [#19696](https://github.com/kubernetes/minikube/pull/19696)
+* Kicbase/ISO: Update containerd from v1.7.22 to v1.7.23 [#19806](https://github.com/kubernetes/minikube/pull/19806)
+* Kicbase/ISO: Update cni-plugins from v1.5.1 to v1.6.0 [#19872](https://github.com/kubernetes/minikube/pull/19872)
+* HA (multi-control plane): Update kube-vip from v0.8.0 to v0.8.7 [#19736](https://github.com/kubernetes/minikube/pull/19736) [#19800](https://github.com/kubernetes/minikube/pull/19800) [#19906](https://github.com/kubernetes/minikube/pull/19906) [#19910](https://github.com/kubernetes/minikube/pull/19910)  [#20053](https://github.com/kubernetes/minikube/pull/20053)
+
+
+For a more detailed changelog, including changes occurring in pre-release versions, see [CHANGELOG.md](https://github.com/kubernetes/minikube/blob/master/CHANGELOG.md).
+
+Thank you to our contributors for this release!
+
+- Anders F Björklund
+- Bingtan Lu
+- Fredrik Holmqvist
+- Hello World
+- Jeff MAURY
+- Kubernetes Prow Robot
+- Matt L
+- Medya Ghazizadeh
+- Nir Soffer
+- Predrag Rogic
+- Qasim Sarfraz
+- Ramachandran C
+- Sarath Kumar
+- Steven Powell
+- Sylvester Carolan
+- Szymon Nadbrzeżny
+- Tyler Auerbeck
+- cuiyourong
+- fbyrne
+- joaquimrocha
+- minikube-bot
+- shixiuguo
+- syxunion
+- tianlj
+- zdxgs
+- 錦南路之花
+
+Thank you to our PR reviewers for this release!
+
+
+## Version 1.34.0 - 2024-09-04
+
+Breaking Changes:
+* Bump minimum podman version to 4.9.0 [#19457](https://github.com/kubernetes/minikube/pull/19457)
+* Disallow using Docker Desktop 4.34.0 
+Features:
+* Bump default Kubernetes version to v1.31.0 [#19435](https://github.com/kubernetes/minikube/pull/19435)
+* Add new driver for macOS: vfkit [#19423](https://github.com/kubernetes/minikube/pull/19423)
+* Add Parallels driver support for darwin/arm64 [#19373](https://github.com/kubernetes/minikube/pull/19373)
+* Add new volcano addon [#18602](https://github.com/kubernetes/minikube/pull/18602)
+* Addons ingress-dns: Added support for all architectures [#19198](https://github.com/kubernetes/minikube/pull/19198)
+* Support privileged ports on WSL [#19370](https://github.com/kubernetes/minikube/pull/19370)
+* VM drivers with docker container-runtime now use docker-buildx for image building [#19339](https://github.com/kubernetes/minikube/pull/19339)
+* Support running x86 QEMU on arm64 [#19228](https://github.com/kubernetes/minikube/pull/19228)
+* Add `-o json` option for `addon images` command [#19364](https://github.com/kubernetes/minikube/pull/19364)
+
+Improvements:
+* add -d shorthand for --driver [#19356](https://github.com/kubernetes/minikube/pull/19356)
+* add -c shorthand for --container-runtime [#19217](https://github.com/kubernetes/minikube/pull/19217)
+* kvm2: Don't delete the "default" libvirt network [#18920](https://github.com/kubernetes/minikube/pull/18920)
+* Update MINIKUBE_HOME usage [#18648](https://github.com/kubernetes/minikube/pull/18648)
+* CNI: Updated permissions to support network policies on kindnet [#19360](https://github.com/kubernetes/minikube/pull/19360)
+* GPU: Set `NVIDIA_DRIVER_CAPABILITIES` to `all` when GPU is enabled [#19345](https://github.com/kubernetes/minikube/pull/19345)
+* Improved error message when trying to use `mount` on system missing 9P [#18995](https://github.com/kubernetes/minikube/pull/18995)
+* Improved error message when enabling KVM addons on non-KVM cluster [#19195](https://github.com/kubernetes/minikube/pull/19195)
+* Added warning when loading image with wrong arch [#19229](https://github.com/kubernetes/minikube/pull/19229)
+* `profile list --output json` handle empty config folder  [#16900](https://github.com/kubernetes/minikube/pull/16900)
+* Check connectivity outside minikube when connectivity issuse [#18859](https://github.com/kubernetes/minikube/pull/18859)
+
+Bugs:
+* Fix not creating API server tunnel for QEMU w/ builtin network [#19191](https://github.com/kubernetes/minikube/pull/19191)
+* Fix waiting for user input on firewall unblock when `--interactive=false` [#19531](https://github.com/kubernetes/minikube/pull/19531)
+* Fix network retry check when subnet already in use for podman [#17779](https://github.com/kubernetes/minikube/pull/17779)
+* Fix empty tarball when generating image save [#19312](https://github.com/kubernetes/minikube/pull/19312)
+* Fix missing permission for kong-serviceaccount [#19002](https://github.com/kubernetes/minikube/pull/19002)
+
+Version Upgrades:
+* Addon cloud-spanner: Update cloud-spanner-emulator/emulator image from 1.5.17 to 1.5.23 [#19341](https://github.com/kubernetes/minikube/pull/19341) [#19501](https://github.com/kubernetes/minikube/pull/19501)
+* Addon headlamp: Update headlamp-k8s/headlamp image from v0.23.2 to v0.25.0 [#18992](https://github.com/kubernetes/minikube/pull/18992) [#19152](https://github.com/kubernetes/minikube/pull/19152) [#19349](https://github.com/kubernetes/minikube/pull/19349)
+* Addon kong: Update kong image from 3.6.1 to 3.7.1 [#19046](https://github.com/kubernetes/minikube/pull/19046) [#19124](https://github.com/kubernetes/minikube/pull/19124)
+* Addon kubevirt: Update bitnami/kubectl image from 1.30.0 to 1.31.0 [#18929](https://github.com/kubernetes/minikube/pull/18929) [#19087](https://github.com/kubernetes/minikube/pull/19087) [#19313](https://github.com/kubernetes/minikube/pull/19313) [#19479](https://github.com/kubernetes/minikube/pull/19479)
+* Addon ingress: Update ingress-nginx/controller image from v1.10.1 to v1.11.2 [#19302](https://github.com/kubernetes/minikube/pull/19302) [#19461](https://github.com/kubernetes/minikube/pull/19461)
+* Addon inspektor-gadget: Update inspektor-gadget image from v0.27.0 to v0.32.0 [#18872](https://github.com/kubernetes/minikube/pull/18872) [#18931](https://github.com/kubernetes/minikube/pull/18931) [#19011](https://github.com/kubernetes/minikube/pull/19011) [#19166](https://github.com/kubernetes/minikube/pull/19166) [#19411](https://github.com/kubernetes/minikube/pull/19411) [#19554](https://github.com/kubernetes/minikube/pull/19554)
+* Addon istio-provisioner: Update istio/operator image from 1.21.2 to 1.23.0 [#18932](https://github.com/kubernetes/minikube/pull/18932) [#19052](https://github.com/kubernetes/minikube/pull/19052) [#19167](https://github.com/kubernetes/minikube/pull/19167) [#19283](https://github.com/kubernetes/minikube/pull/19283) [#19450](https://github.com/kubernetes/minikube/pull/19450)
+* Addon nvidia-device-plugin: Update nvidia/k8s-device-plugin image from v0.15.0 to v0.16.2 [#19162](https://github.com/kubernetes/minikube/pull/19162) [#19266](https://github.com/kubernetes/minikube/pull/19266) [#19336](https://github.com/kubernetes/minikube/pull/19336) [#19409](https://github.com/kubernetes/minikube/pull/19409)
+* Addon metrics-server: Update metrics-server/metrics-server image from v0.7.1 to v0.7.2 [#19529](https://github.com/kubernetes/minikube/pull/19529)
+* Addon YAKD: bump marcnuri/yakd image from 0.0.4 to 0.0.5 [#19145](https://github.com/kubernetes/minikube/pull/19145)
+* CNI: Update calico from v3.27.3 to v3.28.1 [#18870](https://github.com/kubernetes/minikube/pull/18870) [#19377](https://github.com/kubernetes/minikube/pull/19377)
+* CNI: Update cilium from v1.15.3 to v1.16.1 [#18925](https://github.com/kubernetes/minikube/pull/18925) [#19084](https://github.com/kubernetes/minikube/pull/19084) [#19247](https://github.com/kubernetes/minikube/pull/19247) [#19337](https://github.com/kubernetes/minikube/pull/19337) [#19476](https://github.com/kubernetes/minikube/pull/19476)
+* CNI: Update kindnetd from v20240202-8f1494ea to v20240813-c6f155d6 [#18933](https://github.com/kubernetes/minikube/pull/18933) [#19252](https://github.com/kubernetes/minikube/pull/19252) [#19265](https://github.com/kubernetes/minikube/pull/19265) [#19307](https://github.com/kubernetes/minikube/pull/19307) [#19378](https://github.com/kubernetes/minikube/pull/19378) [#19446](https://github.com/kubernetes/minikube/pull/19446)
+* CNI: Update flannel from v0.25.1 to v0.25.6 [#18966](https://github.com/kubernetes/minikube/pull/18966) [#19008](https://github.com/kubernetes/minikube/pull/19008) [#19085](https://github.com/kubernetes/minikube/pull/19085) [#19297](https://github.com/kubernetes/minikube/pull/19297) [#19522](https://github.com/kubernetes/minikube/pull/19522)
+* Kicbase: Update nerdctld from 0.6.0 to 0.6.1 [#19282](https://github.com/kubernetes/minikube/pull/19282)
+* Kicbase: Bump ubuntu:jammy from 20240427 to 20240808 [#19068](https://github.com/kubernetes/minikube/pull/19068) [#19184](https://github.com/kubernetes/minikube/pull/19184) [#19478](https://github.com/kubernetes/minikube/pull/19478)
+* Kicbase/ISO: Update buildkit from v0.13.1 to v0.15.2 [#19024](https://github.com/kubernetes/minikube/pull/19024) [#19116](https://github.com/kubernetes/minikube/pull/19116) [#19264](https://github.com/kubernetes/minikube/pull/19264) [#19355](https://github.com/kubernetes/minikube/pull/19355) [#19452](https://github.com/kubernetes/minikube/pull/19452)
+* Kicbase/ISO: Update cni-plugins from v1.4.1 to v1.5.1 [#19044](https://github.com/kubernetes/minikube/pull/19044) [#19128](https://github.com/kubernetes/minikube/pull/19128)
+* Kicbase/ISO: Update containerd from v1.7.15 to v1.7.21 [#18934](https://github.com/kubernetes/minikube/pull/18934) [#19106](https://github.com/kubernetes/minikube/pull/19106) [#19186](https://github.com/kubernetes/minikube/pull/19186) [#19298](https://github.com/kubernetes/minikube/pull/19298) [#19521](https://github.com/kubernetes/minikube/pull/19521)
+* Kicbase/ISO: Update cri-dockerd from v0.3.12 to v0.3.15 [#19199](https://github.com/kubernetes/minikube/pull/19199) [#19249](https://github.com/kubernetes/minikube/pull/19249)
+* Kicbase/ISO: Update crun from 1.14.4 to 1.16.1 [#19112](https://github.com/kubernetes/minikube/pull/19112) [#19389](https://github.com/kubernetes/minikube/pull/19389) [#19443](https://github.com/kubernetes/minikube/pull/19443)
+* Kicbase/ISO: Update docker from 26.0.2 to 27.2.0 [#18993](https://github.com/kubernetes/minikube/pull/18993) [#19038](https://github.com/kubernetes/minikube/pull/19038) [#19142](https://github.com/kubernetes/minikube/pull/19142) [#19153](https://github.com/kubernetes/minikube/pull/19153) [#19175](https://github.com/kubernetes/minikube/pull/19175) [#19319](https://github.com/kubernetes/minikube/pull/19319) [#19326](https://github.com/kubernetes/minikube/pull/19326) [#19429](https://github.com/kubernetes/minikube/pull/19429) [#19530](https://github.com/kubernetes/minikube/pull/19530)
+* Kicbase/ISO: Update nerdctl from 1.7.5 to 1.7.6 [#18869](https://github.com/kubernetes/minikube/pull/18869)
+* Kicbase/ISO: Update runc from v1.1.12 to v1.1.13 [#19104](https://github.com/kubernetes/minikube/pull/19104)
+
+For a more detailed changelog, including changes occurring in pre-release versions, see [CHANGELOG.md](https://github.com/kubernetes/minikube/blob/master/CHANGELOG.md).
+
+Thank you to our contributors for this release!
+
+- Anders F Björklund
+- Anjali Chaturvedi
+- Artem Basalaev
+- Benjamin P. Jung
+- Daniel Iwaniec
+- Dylan Piergies
+- Gabriel Pelouze
+- Hritesh Mondal
+- Jack Brown
+- Jeff MAURY
+- Marc Nuri
+- Matteo Mortari
+- Medya Ghazizadeh
+- Nir Soffer
+- Philippe Miossec
+- Predrag Rogic
+- Radoslaw Smigielski
+- Raghavendra Talur
+- Sandipan Panda
+- Steven Powell
+- Sylvester Carolan
+- Tom McLaughlin
+- Tony-Sol
+- aiyijing
+- chubei
+- daniel-iwaniec
+- hritesh04
+- joaquimrocha
+- ljtian
+- mitchell amihod
+- shixiuguo
+- sunyuxuan
+- thomasjm
+- tianlijun
+- tianlj
+- 錦南路之花
+- 锦南路之花
+
+Thank you to our PR reviewers for this release!
+
+- spowelljr (67 comments)
+- medyagh (53 comments)
+- nirs (14 comments)
+- cfergeau (4 comments)
+- liangyuanpeng (2 comments)
+- ComradeProgrammer (1 comments)
+- afbjorklund (1 comments)
+- aojea (1 comments)
+- bobsira (1 comments)
+
+Thank you to our triage members for this release!
+
+- kundan2707 (55 comments)
+- medyagh (29 comments)
+- afbjorklund (28 comments)
+- T-Lakshmi (20 comments)
+- Ritikaa96 (16 comments)
+
+Check out our [contributions leaderboard](https://minikube.sigs.k8s.io/docs/contrib/leaderboard/v1.34.0/) for this release!
+
 ## Version 1.33.1 - 2024-05-13
 
 Bugs:
